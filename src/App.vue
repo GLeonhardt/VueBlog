@@ -23,6 +23,7 @@
 #nav {
   padding: 16px;
   display: flex;
+  background-color: #e8e9eb;
 }
 
 #nav span{
