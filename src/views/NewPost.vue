@@ -1,38 +1,40 @@
 <template>
-  <div class="about">
+  <div class="newPost">
     <form @submit.prevent="salvar">
-      <div class="row">
-        <div>
-          <div class="form-group">
-            <label>Título</label>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Título do post"
-              v-model="postLocal.titulo"
-            />
-
-            <label>Autor</label>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Autor do post"
-              v-model="postLocal.autor"
-            />
-
-            <textarea
-              id="story"
-              class="form-control"
-              placeholder="Escreva seu post"
-              v-model="postLocal.conteudo"
-              rows="5"
-              cols="33"
-            ></textarea>
-          </div>
-        </div>
+      <div class="titulo">
+        <label>Título:</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Título do post"
+          v-model="postLocal.titulo"
+        />
       </div>
 
-      <button type="submit" class="btn btn-primary">Salvar</button>
+      <div class="autor">
+        <label>Autor:</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Autor do post"
+          v-model="postLocal.autor"
+        />
+      </div>
+      <div class="conteudo">
+        <label>Post:</label>
+        <textarea
+          id="story"
+          class="form-control"
+          placeholder="Escreva seu post"
+          v-model="postLocal.conteudo"
+          cols="300"
+        ></textarea>
+      </div>
+
+      <div class="botao">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button class="btn btn-danger" click="navegarHome()">Cancelar</button>
+      </div>
     </form>
   </div>
 </template>
@@ -67,13 +69,63 @@ export default {
       this.postLocal.data = new Date();
       this.$emit("Criar", this.postLocal);
 
-      console.log(api);
-      console.log(this.postLocal);
       await api.post(api.defaults.backendUrl + "post", this.postLocal);
-      //navegar home
-      // router.push({ path: "/" });
-      // this.post = { titulo: "", status: 0 };
+
+      this.navegarHome();
+    },
+
+    navegarHome() {
+      this.$router.push({ path: "/" });
     }
   }
 };
 </script>
+
+
+<style lang="scss">
+.newPost form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  min-height: 600px;
+  background-color: #e5e5e5;
+}
+label {
+  font-weight: bold;
+  color: #2c3e50;
+}
+.autor,
+.titulo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  flex-grow: 0.5;
+  width: 85%;
+}
+
+.conteudo {
+  flex-grow: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 85%;
+
+  label {
+    flex-grow: 0.1;
+  }
+  textarea {
+    resize: none;
+    flex-grow: 0.9;
+  }
+}
+.botao {
+  button{
+    margin:8px;
+  }
+}
+</style>
