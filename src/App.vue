@@ -1,6 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
+      <strong>VueBlog</Strong>
+      <span class="spacer"></span>
       <router-link to="/">Home</router-link>|
       <router-link to="/newPost">New Post</router-link>
     </div>
@@ -19,7 +21,18 @@
   min-height: 100%;
 }
 #nav {
-  padding: 30px;
+  padding: 16px;
+  display: flex;
+}
+
+#nav span{
+  color: #42b983;
+  font-family: cursive;
+  font-size: 24px;
+}
+
+.spacer {
+  flex-grow: 1;
 }
 
 #nav a {

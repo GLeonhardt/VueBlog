@@ -1,11 +1,7 @@
 <template>
-  <div class="listaPost">
-    <span>a</span>
-    <ul v-if="posts.length > 0">
-      <Post v-for="post in posts" :key="post.id" :post="post" />
-    </ul>
-    <span v-else>Nenhum post encontrado</span>
-  </div>
+  <ul class="listaPost" v-if="posts.length > 0">
+    <Post v-for="post in posts" :key="post.id" :post="post" />
+  </ul>
 </template>
 
 <script>
@@ -26,6 +22,7 @@ export default {
   created() {
     api.get(api.defaults.backendUrl + "post").then(response => {
       this.posts = response.data;
+      this.posts.reverse();
       console.log(this.posts);
     });
   }
@@ -34,11 +31,12 @@ export default {
 
 <style lang="scss" >
 .listaPost {
+  padding: 8px;
   height: 100%;
-  background-color: #e5e5e5;
+  background-color: #d9d9d9;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
-</style>
+</style>#d9d9d9

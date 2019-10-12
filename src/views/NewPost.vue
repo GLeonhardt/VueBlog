@@ -66,7 +66,13 @@ export default {
   },
   methods: {
     async salvar(event) {
-      this.postLocal.data = new Date();
+      var data = new Date();
+      this.postLocal.data =
+        ("0" + data.getDate()).slice(-2) +
+        "-" +
+        ("0" + (data.getMonth() + 1)).slice(-2) +
+        "-" +
+        data.getFullYear();
       this.$emit("Criar", this.postLocal);
 
       await api.post(api.defaults.backendUrl + "post", this.postLocal);
@@ -86,11 +92,11 @@ export default {
 .newPost form {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   min-height: 600px;
-  background-color: #e5e5e5;
+  background-color: #d9d9d9;
 }
 label {
   font-weight: bold;
@@ -124,8 +130,8 @@ label {
   }
 }
 .botao {
-  button{
-    margin:8px;
+  button {
+    margin: 8px;
   }
 }
 </style>

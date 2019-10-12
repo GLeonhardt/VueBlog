@@ -15,3 +15,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.home {
+  min-height: 800px;
+}
+</style>
