@@ -75,7 +75,7 @@ export default {
         data.getFullYear();
       this.$emit("Criar", this.postLocal);
 
-      await api.post(api.defaults.backendUrl + "post", this.postLocal);
+      await api.post(api.defaults.Url + "post", this.postLocal);
 
       this.navegarHome();
     },

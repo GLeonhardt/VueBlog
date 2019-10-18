@@ -27,7 +27,7 @@ export default {
   },
   computed: {},
   created() {
-    api.get(api.defaults.backendUrl + "post").then(response => {
+    api.get(api.defaults.Url + "post").then(response => {
       this.posts = response.data;
       this.posts.reverse();
       console.log(this.posts);

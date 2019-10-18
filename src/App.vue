@@ -3,8 +3,11 @@
     <div id="nav">
       <strong>VueBlog</Strong>
       <span class="spacer"></span>
-      <router-link to="/">Home</router-link>|
-      <router-link to="/newPost">New Post</router-link>
+      <router-link to="/">Home </router-link> |
+      <router-link to="/newPost">Novo Post </router-link> |
+      <a href="https://docs.google.com/document/d/18CPsnH31Uql8cF7_etSc3lcsUA5eUzoPt5hh0CRRzJ4/edit?usp=sharing" target="_blank">
+        PDF
+      </a>
     </div>
     <router-view />
   </div>
