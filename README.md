@@ -26,4 +26,4 @@ $ npm start
 
 A aplicação estará rodando no endereço: `localhost:8080` 
 
-O json-server no endereço: `localhost:3000`
+O json-server estará rodando no endereço: `localhost:3000`
