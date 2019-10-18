@@ -24,4 +24,6 @@ $ cd database
 $ npm start
 ```
 
-A aplicação estará rodando no endereço: `localhost:8080` e o json-server in `localhost:3000`
+A aplicação estará rodando no endereço: `localhost:8080` 
+
+O json-server no endereço: `localhost:3000`
