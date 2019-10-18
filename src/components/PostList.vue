@@ -5,7 +5,7 @@
       <button class="btn btn-primary" v-on:click="buscar">Pesquisar</button>
     </div>
     <ul class="listaPost" v-if="posts.length > 0">
-      <Post v-for="post in posts" :key="post.id" :post="post" />
+      <Post v-for="post in posts" :key="post.id" :post="post" @excluir="excluirPost" />
     </ul>
   </div>
 </template>
@@ -43,9 +43,16 @@ export default {
             x.autor.includes(this.textoBusca)
         );
         console.log(this.posts);
-      } else {
-        console.log("else");
       }
+    },
+
+    async excluirPost(post) {
+      console.log("excluir" + post.id);
+
+      await api.delete(api.defaults.Url + "post/" + post.id);
+
+      var index = this.posts.findIndex(x => x.id === post.id);
+      this.posts.splice(index, 1);
     }
   }
 };

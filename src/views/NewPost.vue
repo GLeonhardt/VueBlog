@@ -33,7 +33,7 @@
 
       <div class="botao">
         <button type="submit" class="btn btn-primary">Salvar</button>
-        <button class="btn btn-danger" click="navegarHome()">Cancelar</button>
+        <button class="btn btn-danger" @click="navegarHome()">Cancelar</button>
       </div>
     </form>
   </div>
@@ -66,21 +66,30 @@ export default {
   },
   methods: {
     async salvar(event) {
-      var data = new Date();
-      this.postLocal.data =
-        ("0" + data.getDate()).slice(-2) +
-        "-" +
-        ("0" + (data.getMonth() + 1)).slice(-2) +
-        "-" +
-        data.getFullYear();
-      this.$emit("Criar", this.postLocal);
+      console.log(this.postLocal.autor == "");
+      if (
+        !this.postLocal.autor == "" &&
+        !this.postLocal.conteudo == "" &&
+        !this.postLocal.titulo == ""
+      ) {
+        console.log("salvar");
+        var data = new Date();
+        this.postLocal.data =
+          ("0" + data.getDate()).slice(-2) +
+          "-" +
+          ("0" + (data.getMonth() + 1)).slice(-2) +
+          "-" +
+          data.getFullYear();
+        this.$emit("Criar", this.postLocal);
 
-      await api.post(api.defaults.Url + "post", this.postLocal);
+        await api.post(api.defaults.Url + "post", this.postLocal);
 
-      this.navegarHome();
+        this.navegarHome();
+      }
     },
 
     navegarHome() {
+      console.log("cancelar");
       this.$router.push({ path: "/" });
     }
   }
