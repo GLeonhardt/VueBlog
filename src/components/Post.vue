@@ -1,12 +1,17 @@
 <template>
   <div class="root">
-    <div class="titulo">
-      <span class="spanTitulo">{{post.titulo}}</span>
-      <small class="spanAutorData">
-        Escrito por:
-        {{post.autor}}
-        em: {{post.data}}
-      </small>
+    <div class="tituloBotaoExcluir">
+      <div class="titulo">
+        <span class="spanTitulo">{{post.titulo}}</span>
+        <small class="spanAutorData">
+          Escrito por:
+          {{post.autor}}
+          em: {{post.data}}
+        </small>
+      </div>
+      <div class="botao">
+        <button class="btn btn-outline-danger" @click="$emit('excluir', post)">Excluir</button>
+      </div>
     </div>
 
     <div class="conteudo">
@@ -16,6 +21,8 @@
 </template>
 
 <script>
+import api from "../api";
+
 export default {
   name: "Post",
   props: {
@@ -24,7 +31,23 @@ export default {
       required: true
     }
   },
-  components: {}
+  computed: {},
+  data() {
+    return {
+      postLocal: Object.assign(
+        {},
+        { titulo: "", data: "", autor: "", conteudo: "" },
+        this.post
+      )
+    };
+  },
+  watch: {
+    post(postNovo, postAntigo) {
+      this.postLocal = Object.assign({}, this.postLocal);
+    }
+  },
+  components: {},
+  methods: {}
 };
 </script>
 
@@ -38,6 +61,13 @@ export default {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: flex-start;
+
+  .tituloBotaoExcluir {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
   .titulo {
     display: flex;
